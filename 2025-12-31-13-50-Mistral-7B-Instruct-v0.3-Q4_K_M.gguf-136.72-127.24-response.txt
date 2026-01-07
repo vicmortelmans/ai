@@ -1,0 +1,10 @@
+# Mistral-7B-Instruct-v0.3-Q4_K_M.gguf
+
+<|system|>
+You are a helpful assistant.
+
+<|user|>
+Say hello and count to three.
+
+<|assistant|>
+ Hello! Here we go, counting to three: 1, 2, 3! How can I assist you further today?

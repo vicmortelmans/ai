@@ -1,0 +1,6 @@
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+Wat leert Thomas van Aquino in de Summa over de Goddelijke Personen?</s>
+<|assistant|>
+Thomas van Aquino (1122-1165) was a Dominican friar and theologian. In his Summa, Aquino addresses the question of who are the Goddelijkelijke Persons (God-embodied beings) and how they are related to Christ. He defines these persons as "men and women who, because they are God-embodied, are in a special way related to Christ and are called the Christ-embodied Persons". Aquino argues that these persons are not only those who were born into the world as human beings, but also include those who were born from the earthly, physical realm to the spiritual world, such as Mary and her son Jesus. He also emphasizes that Christ himself is one of these Goddelijkelijke Persons and that his divine nature makes him a unique embodiment of God. Aquino concludes by saying that the Christ-embodied Persons are not only the spiritual and divine, but also the physical and bodily, and that they share the same identity with Christ.

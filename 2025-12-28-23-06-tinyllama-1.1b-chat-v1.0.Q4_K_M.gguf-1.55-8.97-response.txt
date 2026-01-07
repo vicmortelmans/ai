@@ -1,0 +1,7 @@
+# tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+Does God uphold all things?</s>
+<|assistant|>
+While the Bible teaches that God is all-powerful and all-knowing, it does not affirm that He holds all things in His hands. The Bible teaches that God is the creator of all things, including human beings and the natural world, and that He has the ultimate authority and sovereignty over all things in His divine and eternal kingdom. However, as human beings, we are not immune to the limitations and weaknesses of humanity and our own sin nature, and we rely on God's grace and mercy to sustain us and guide us through life's challenges. Therefore, while God is all-powerful, He also has a humble and active role in shaping and controlling the course of His creation.

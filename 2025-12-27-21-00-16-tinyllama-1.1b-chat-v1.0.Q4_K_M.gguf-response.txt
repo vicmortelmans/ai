@@ -1,0 +1,16 @@
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+What teaches Thomas Aquinas in the Summa about the Divine Persons?</s>
+<|assistant|>
+Thomas Aquinas teaches the Divine Persons in the Summa in the following section:
+
+Summa Theologica (Summa Trivium)
+
+Part 1, Book 1, Chapter 6
+
+In this section, Aquinas discusses the Divine Persons (Divinum Personam), the three Persons of the Trinity: the Father, Son, and Holy Spirit. He argues that the Father is the first and greatest of the three, but the Son is of equal rank with the Father, and the Holy Spirit is the third Person of the Trinity. Aquinas uses the analogy of the sun, moon, and stars to explain this concept, and he uses the term "coincident" to emphasize the equality and unity of the three Persons of the Trinity.
+
+In this section, Aquinas also argues that the Son and the Holy Spirit are truly and completely one, and that they are equal and one in substance. He also discusses the idea that the Holy Spirit is the "Word," and that this concept is derived from the idea that the Father is the first and the Son is the second.
+
+These are some of the topics discussed by Aquinas in Part 1, Book 1, Chapter 6 of the Summa.

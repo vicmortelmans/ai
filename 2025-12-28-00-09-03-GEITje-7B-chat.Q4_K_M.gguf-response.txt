@@ -1,0 +1,6 @@
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+Wat leert Thomas van Aquino in de Summa over de Goddelijke Personen?</s>
+<|assistant|>
+Hij leert dat de Drie-eenheid bestaat uit de Vader, Zoon en Heilige Geest.

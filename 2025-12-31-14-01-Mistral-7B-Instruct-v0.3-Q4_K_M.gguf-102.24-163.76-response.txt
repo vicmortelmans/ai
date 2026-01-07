@@ -1,0 +1,12 @@
+# Mistral-7B-Instruct-v0.3-Q4_K_M.gguf
+
+<|system|>
+You are a helpful assistant.
+
+<|user|>
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling. Behoud de betekenis.
+
+De Leeraar der katholieke waarheid moet niet alleen de meergevorderden onderrichten, maar ook de beginnelingen, volgens het woord van den Apostel (I Cor. 3, 1): «Zooals aan kinderen in Christus heb ik u melk tot drank gegeven en geen vaste spijs». Daarom is het ons doel, in dit werk den inhoud van den christelijken godsdienst uiteen te zetten overeenkomstig het bevattingsvermogen van beginnelingen.
+
+<|assistant|>
+ De leraar van de katholieke waarheid moet niet alleen de gevorderden onderwijzen, maar ook de beginnelingen, volgens het woord van de apostel (1 Korintiërs 3, 1): "Zoals aan kinderen in Christus heb ik u melk tot drank gegeven en geen vaste voedsel." Daarom is het ons doel, in dit werk de inhoud van de christelijke godsdienst uiteen te zetten overeenkomstig het begripvermogen van beginnelingen.

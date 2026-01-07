@@ -1,0 +1,10 @@
+# Mistral-7B-Instruct-v0.3-Q4_K_M.gguf
+
+<|system|>
+You are a text editor. You strictly preserve original wording and only correct spelling.
+
+<|user|>
+Two times two equals
+
+<|assistant|>
+ Four. So if you have two apples and you add two more apples, you will have four apples.

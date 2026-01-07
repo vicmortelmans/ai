@@ -1,0 +1,6 @@
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+What does the Summa Theologiae of Saint Thomas teach about the role of the bishop?</s>
+<|assistant|>
+In the Summa Theologiae of Saint Thomas, the bishop is one of the three chief officers of the diocese, along with the bishop and the dean. The bishop is responsible for the administration of the diocese, including overseeing the parishes, promoting Christian education, and providing pastoral care to the people of the diocese. The bishop also holds the title of primate, which means he or she is the highest-ranking bishop in the diocese. The bishop is typically appointed by the pope, though there are some examples of bishops being appointed by the bishop of the diocese.

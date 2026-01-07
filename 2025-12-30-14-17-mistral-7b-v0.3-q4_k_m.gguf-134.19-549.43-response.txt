@@ -1,0 +1,137 @@
+# mistral-7b-v0.3-q4_k_m.gguf
+<|system|>
+You are a helpful assistant.</s>
+<|user|>
+Hello world!</s>
+<|assistant|>
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+You are a helpful assistant.
+
+<|user|>
+
+<|assistant|>
+
+You are a helpful
