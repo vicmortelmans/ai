@@ -24,6 +24,7 @@ def format_prompt(messages):
             raise Exception("Only user and assistant roles are supported!")
     return formatted_text
 
+
 def main():
     # Configuration
     model = "mistralai/Mistral-7B-Instruct-v0.3"
