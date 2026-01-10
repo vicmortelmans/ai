@@ -28,7 +28,7 @@ def format_prompt(messages):
 def main():
     # Configuration
     model = "mistralai/Mistral-7B-Instruct-v0.3"
-    prompt_file = "prompt.txt"
+    prompt_file = os.path.join(os.path.dirname(__file__), '..', 'prompt.txt')
     
     # 1. Read the prompt from file
     if not os.path.exists(prompt_file):
