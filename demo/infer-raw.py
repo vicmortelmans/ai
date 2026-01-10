@@ -2,6 +2,11 @@ import datetime
 import os
 import time
 from vllm import LLM, SamplingParams
+import re
+
+def sanitize_filename(s: str, replacement: str = "_") -> str:
+    # Keep letters, numbers, dash, underscore, dot
+    return re.sub(r'[^A-Za-z0-9._-]', replacement, s)
 
 def format_prompt(messages):
     eos_token = "</s>"
@@ -21,10 +26,7 @@ def format_prompt(messages):
 
 def main():
     # Configuration
-    # Assumes script is run from project root where ./models exists
-    # Note: vLLM requires a HuggingFace model format (not GGUF).
-    model_path = "mistralai/Mistral-7B-Instruct-v0.3"
-    model = os.path.basename(model_path)
+    model = "mistralai/Mistral-7B-Instruct-v0.3"
     prompt_file = "prompt.txt"
     
     # 1. Read the prompt from file
@@ -38,7 +40,7 @@ def main():
     # 2. Initialize the Model
     start_init = time.time()
     
-    llm = LLM(model=model_path, download_dir="./models")
+    llm = LLM(model=model, download_dir="./models")
     end_init = time.time()
     init_seconds = end_init - start_init
 
@@ -69,7 +71,7 @@ def main():
 
     # 5. Write to timestamped file
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
-    output_filename = f"infer-raw-{timestamp}-{model}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
+    output_filename = f"infer-raw-{timestamp}-{sanitize_filename(model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
     
     with open(output_filename, "w", encoding="utf-8") as f:
         f.write(f"# {model}\n")
