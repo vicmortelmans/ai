@@ -32,6 +32,14 @@ def main():
     output_dir = "/hfcache/output"
     os.makedirs(output_dir, exist_ok=True)
     
+    # Read prefix
+    prefix_file = os.path.join(os.path.dirname(__file__), '..', 'prompt-prefix.txt')
+    if not os.path.exists(prefix_file):
+        print(f"Error: '{prefix_file}' not found.")
+        return
+    with open(prefix_file, "r", encoding="utf-8") as f:
+        prefix = f.read().strip()
+    
     # Get list of txt files
     if not os.path.exists(input_dir):
         print(f"Error: '{input_dir}' not found.")
@@ -59,6 +67,7 @@ def main():
         full_path = os.path.join(input_dir, txt_file)
         with open(full_path, "r", encoding="utf-8") as f:
             user_prompt = f.read().strip()
+        user_prompt = prefix + "\n\n" + user_prompt
         
         # 2. Format Prompt (ChatML style)
         system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."

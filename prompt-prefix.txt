@@ -1,0 +1,9 @@
+Rewrite the following text in modern Dutch with correct spelling.
+
+Rules:
+- Do NOT change any words.
+- Do NOT change word order or sentence structure.
+- Only update the spelling of words to modern Dutch.
+- Keep Latin text unchanged.
+- If a word is already in modern spelling, leave it as is.
+- When in doubt, do nothing.
