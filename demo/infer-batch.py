@@ -41,7 +41,7 @@ def main():
     # 2. Initialize the Model
     start_init = time.time()
     
-    llm = LLM(model=model, download_dir="./models")
+    llm = LLM(model=model, download_dir="/hfcache/hub/")
     end_init = time.time()
     init_seconds = end_init - start_init
 
