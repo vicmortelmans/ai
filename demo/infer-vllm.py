@@ -56,7 +56,7 @@ def main():
     llm.generate([warmup_prompt], warmup_sampling_params)
 
     # 3. Format Prompt (ChatML style)
-    system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."
+    system_message = "Je bent een tekstredacteur."
     messages = [
         {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
     ]
