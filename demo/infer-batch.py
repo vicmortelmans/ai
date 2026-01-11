@@ -28,62 +28,74 @@ def format_prompt(messages):
 def main():
     # Configuration
     model = "mistralai/Mistral-7B-Instruct-v0.3"
-    prompt_file = os.path.join(os.path.dirname(__file__), '..', 'prompt.txt')
+    input_dir = "/hfcache/input"
+    output_dir = "/hfcache/output"
+    os.makedirs(output_dir, exist_ok=True)
     
-    # 1. Read the prompt from file
-    if not os.path.exists(prompt_file):
-        print(f"Error: '{prompt_file}' not found in current working directory.")
+    # Get list of txt files
+    if not os.path.exists(input_dir):
+        print(f"Error: '{input_dir}' not found.")
         return
-
-    with open(prompt_file, "r", encoding="utf-8") as f:
-        user_prompt = f.read().strip()
-
-    # 2. Initialize the Model
+    
+    txt_files = [f for f in os.listdir(input_dir) if f.endswith('.txt')]
+    if not txt_files:
+        print(f"No .txt files found in '{input_dir}'.")
+        return
+    
+    # 1. Initialize the Model
     start_init = time.time()
     
     llm = LLM(model=model, download_dir="/hfcache/hub/")
     end_init = time.time()
     init_seconds = end_init - start_init
-
+    
     # Warm-up inference
     warmup_prompt = "Warm-up request"
     warmup_sampling_params = SamplingParams(temperature=0, max_tokens=1)
     llm.generate([warmup_prompt], warmup_sampling_params)
-
-    # 3. Format Prompt (ChatML style)
-    system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."
-    messages = [
-        {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
-    ]
-    prompt_text = format_prompt(messages)
-
-    # 4. Run Inference
-    print("Running inference...")
-    sampling_params = SamplingParams(temperature=0, max_tokens=2048)
-    start_infer = time.time()
-    outputs = llm.generate([prompt_text], sampling_params)
-    end_infer = time.time()
-    infer_seconds = end_infer - start_infer
     
-    # Print usage statistics
-    output = outputs[0]
-    prompt_tokens = len(output.prompt_token_ids)
-    completion_tokens = len(output.outputs[0].token_ids)
-    total_tokens = prompt_tokens + completion_tokens
-    print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
-
-    # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
-    full_text = prompt_text + output.outputs[0].text
-
-    # 5. Write to timestamped file
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
-    output_filename = f"infer-raw-{timestamp}-{sanitize_filename(model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
-    
-    with open(output_filename, "w", encoding="utf-8") as f:
-        f.write(f"# {model}\n")
-        f.write(full_text)
+    # For each input file
+    for txt_file in txt_files:
+        full_path = os.path.join(input_dir, txt_file)
+        with open(full_path, "r", encoding="utf-8") as f:
+            user_prompt = f.read().strip()
         
-    print(f"Success! Output written to {output_filename}")
+        # 2. Format Prompt (ChatML style)
+        system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."
+        messages = [
+            {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
+        ]
+        prompt_text = format_prompt(messages)
+        
+        # 3. Run Inference
+        print(f"Running inference for {txt_file}...")
+        sampling_params = SamplingParams(temperature=0, max_tokens=2048)
+        start_infer = time.time()
+        outputs = llm.generate([prompt_text], sampling_params)
+        end_infer = time.time()
+        infer_seconds = end_infer - start_infer
+        
+        # Print usage statistics
+        output = outputs[0]
+        prompt_tokens = len(output.prompt_token_ids)
+        completion_tokens = len(output.outputs[0].token_ids)
+        total_tokens = prompt_tokens + completion_tokens
+        print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
+        
+        # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
+        full_text = prompt_text + output.outputs[0].text
+        
+        # 4. Write to file
+        base_name = os.path.basename(txt_file).rsplit('.', 1)[0]
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+        output_filename = f"{base_name}-{timestamp}-{sanitize_filename(model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
+        output_path = os.path.join(output_dir, output_filename)
+        
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(f"# {model}\n")
+            f.write(full_text)
+            
+        print(f"Success! Output written to {output_path}")
 
 if __name__ == "__main__":
     main()
