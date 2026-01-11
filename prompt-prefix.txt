@@ -1,9 +1,12 @@
-Rewrite the following text in modern Dutch with correct spelling.
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
 
-Rules:
-- Do NOT change any words.
-- Do NOT change word order or sentence structure.
-- Only update the spelling of words to modern Dutch.
-- Keep Latin text unchanged.
-- If a word is already in modern spelling, leave it as is.
-- When in doubt, do nothing.
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden aan.
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.

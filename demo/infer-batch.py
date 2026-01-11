@@ -1,6 +1,7 @@
 import datetime
 import os
 import time
+import torch
 from vllm import LLM, SamplingParams
 import re
 
@@ -32,6 +33,9 @@ def main():
     input_dir = "/hfcache/input"
     output_dir = "/hfcache/output"
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Get GPU model
+    gpu_model = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
     
     # Read prefix
     prefix_file = os.path.join(os.path.dirname(__file__), '..', 'prompt-prefix.txt')
@@ -71,7 +75,7 @@ def main():
         user_prompt = prefix + "\n\n" + user_prompt
         
         # 2. Format Prompt (ChatML style)
-        system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."
+        system_message = "Je bent een tekstredacteur."
         messages = [
             {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
         ]
@@ -98,7 +102,7 @@ def main():
         # 4. Write to file
         base_name = os.path.basename(txt_file).rsplit('.', 1)[0]
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
-        output_filename = f"{base_name}-{timestamp}-{sanitize_filename(model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
+        output_filename = f"{base_name}-{timestamp}-{sanitize_filename(model)}-{sanitize_filename(gpu_model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
         output_path = os.path.join(output_dir, output_filename)
         
         with open(output_path, "w", encoding="utf-8") as f:
