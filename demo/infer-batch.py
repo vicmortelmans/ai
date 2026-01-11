@@ -28,8 +28,9 @@ def format_prompt(messages):
 
 def main():
     # Configuration
-    model = "mistralai/Mistral-7B-Instruct-v0.3"
+    #model = "mistralai/Mistral-7B-Instruct-v0.3"
     #model = "ReBatch/Llama-3-8B-dutch"
+    model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
     input_dir = "/hfcache/input"
     output_dir = "/hfcache/output"
     os.makedirs(output_dir, exist_ok=True)
