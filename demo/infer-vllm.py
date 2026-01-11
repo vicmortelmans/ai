@@ -1,6 +1,7 @@
 import datetime
 import os
 import time
+import torch
 from vllm import LLM, SamplingParams
 import re
 
@@ -27,8 +28,12 @@ def format_prompt(messages):
 
 def main():
     # Configuration
-    model = "mistralai/Mistral-7B-Instruct-v0.3"
+    #model = "mistralai/Mistral-7B-Instruct-v0.3"
+    model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
     prompt_file = os.path.join(os.path.dirname(__file__), '..', 'prompt.txt')
+    
+    # Get GPU model
+    gpu_model = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
     
     # 1. Read the prompt from file
     if not os.path.exists(prompt_file):
@@ -77,7 +82,7 @@ def main():
 
     # 5. Write to timestamped file
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
-    output_filename = f"infer-raw-{timestamp}-{sanitize_filename(model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
+    output_filename = f"infer-vllm-{timestamp}-{sanitize_filename(model)}-{sanitize_filename(gpu_model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
     
     with open(output_filename, "w", encoding="utf-8") as f:
         f.write(f"# {model}\n")
