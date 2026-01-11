@@ -45,6 +45,11 @@ def main():
     end_init = time.time()
     init_seconds = end_init - start_init
 
+    # Warm-up inference
+    warmup_prompt = "Warm-up request"
+    warmup_sampling_params = SamplingParams(temperature=0, max_tokens=1)
+    llm.generate([warmup_prompt], warmup_sampling_params)
+
     # 3. Format Prompt (ChatML style)
     system_message = "You are a text editor. You strictly preserve original wording and only correct spelling."
     messages = [
