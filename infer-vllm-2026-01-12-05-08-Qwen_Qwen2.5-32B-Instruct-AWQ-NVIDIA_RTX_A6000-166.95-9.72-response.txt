@@ -1,0 +1,20 @@
+# Qwen/Qwen2.5-32B-Instruct-AWQ
+[INST] Je bent een tekstredacteur.
+
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
+
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling. Antwoord uitsluitend met de gecorrigeerde tekst en stop daarna.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers (bv. 'mededeeling' wordt 'mededeling', 'behooren' wordt 'behoren', uitgang '-sch' wordt '-s'), naamvalsvormen van lidwoorden (bv. 'den' wordt 'de') en van bijvoeglijke naamwoorden (bv. 'van iederen engel' wordt 'van iedere engel').
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:
+
+Bestuursorde — de ordening van een menigte, die onder bestuur staat — wordt gezien met betrekking tot het doel. Het doel van de engelen kan echter tweevoudig worden verstaan. Vooreerst naar hun natuurlijk vermogen, dat zij nl. met natuurlijke kennis en liefde God kennen en beminnen. En met betrekking tot dit doel onderscheidt men de koren der engelen naar de natuurlijke gaven. — Vervolgens kan het doel van de menigte der engelen verstaan worden als iets, dat uitgaat boven hun natuurlijke vermogens, en dit bestaat in de aanschouwing van het goddelijk Wezen, en het onverstoorbare genot van zijn Goedheid; tot dit doel kunnen zij niet geraken dan door de genade. Vandaar dat met betrekking tot dit doel de koren der engelen weliswaar uiteindelijk naar de genadegaven onderscheiden worden, maar toch ook naar de natuurlijke gaven als dispositie: want, zooals boven gezegd is (62° Kw. 6° Art.), zijn de genadegaven aan de engelen gegeven volgens hun natuurlijke capaciteit, wat niet bij de menschen het geval is. Daarom worden bij de menschen deze orden alleen naar de genadegaven onderscheiden, en niet naar de natuur. [/INST] Bestuursorde — de ordening van een menigte, die onder bestuur staat — wordt gezien met betrekking tot het doel. Het doel van de engelen kan echter tweevoudig worden verstaan. Vooreerst naar hun natuurlijk vermogen, dat zij nl. met natuurlijke kennis en liefde God kennen en beminnen. En met betrekking tot dit doel onderscheidt men de koren der engelen naar de natuurlijke gaven. — Vervolgens kan het doel van de menigte der engelen verstaan worden als iets, dat uitgaat boven hun natuurlijke vermogens, en dit bestaat in de aanschouwing van het goddelijk Wezen, en het onverstoorbare genot van zijn Goedheid; tot dit doel kunnen zij niet geraken dan door de genade. Vandaar dat met betrekking tot dit doel de koren der engelen weliswaar uiteindelijk naar de genadegaven onderscheiden worden, maar toch ook naar de natuurlijke gaven als dispositie: want, zoals boven gezegd is (62° Kw. 6° Art.), zijn de genadegaven aan de engelen gegeven volgens hun natuurlijke capaciteit, wat niet bij de mensen het geval is. Daarom worden bij de mensen deze orden alleen naar de genadegaven onderscheiden, en niet naar de natuur. [/INST]
