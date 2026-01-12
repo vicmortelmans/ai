@@ -1,0 +1,20 @@
+# Qwen/Qwen2.5-32B-Instruct-AWQ
+[INST] Je bent een tekstredacteur.
+
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
+
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers, uitgang '-sch', naamvalsvormen van lidwoorden (bv. 'den') en bijvoeglijke naamwoorden.
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:
+
+Onder de engelen wordt gesproken, maar zooals Gregorius zegt: « Het is billijk, dat als onze geest zich verheft boven de wijze van onze zintuigelijke spraak, tot de verheven en ongekende wijzen der innerlijke spraak, hij maat houde ». Om dus te begrijpen, hoe de eene engel tot den anderen spreekt, moet men bedenken, dat, zooals boven, toen we handelden over de daden en vermogens der ziel, gezegd is (82° Kw. 4° Art.), de wil het verstand tot zijn daad beweegt. Het begrijpelijke is op drie manieren in ons verstand: eerstens habitueel, ofwel in het geheugen, zooals Augustinus zegt; ten tweede als actueel beschouwd of begrepen; ten derde als geordend tot iets anders. Het is echter duidelijk, dat het van den eersten naar den tweeden graad wordt overgebracht door het wilsbevel: vandaar wordt in de definitie van hebbelijkheid gezegd: « wat men gebruikt als men wil ». Eveneens wordt het van den tweeden naar den derden graad overgebracht door den wil: want door den wil wordt het verstandsbegrip tot iets anders geordend b.v. om iets te doen of aan een ander kenbaar te maken. — Wanneer echter de geest in zich keert om actueel te beschouwen, wat hij habitueel kent, spreekt hij tot zichzelf: want wat het verstand vat, wordt het innerlijk woord genoemd. Doordat echter het begrip van den engel door den wil van den engel zelf gericht wordt op kenbaarmaking aan den ander, wordt het begrip van den eenen engel kenbaar aan den anderen: en zoo spreekt de een tot den ander. Spreken toch is niets anders dan zijn begrip aan een ander kenbaar maken. [/INST] Onder de engelen wordt gesproken, maar zoals Gregorius zegt: « Het is billijk, dat als onze geest zich verheft boven de wijze van onze zintuigelijke spraak, tot de verheven en ongekende wijzen der innerlijke spraak, hij maat houde ». Om dus te begrijpen, hoe de ene engel tot de andere spreekt, moet men bedenken, dat, zoals boven, toen we handelden over de daden en vermogens der ziel, gezegd is (82° Kw. 4° Art.), de wil het verstand tot zijn daad beweegt. Het begrijpelijke is op drie manieren in ons verstand: eerstens habitueel, ofwel in het geheugen, zoals Augustinus zegt; ten tweede als actueel beschouwd of begrepen; ten derde als geordend tot iets anders. Het is echter duidelijk, dat het van de eerste naar de tweede graad wordt overgebracht door het wilsbevel: vandaar wordt in de definitie van hebbelijkheid gezegd: « wat men gebruikt als men wil ». Eveneens wordt het van de tweede naar de derde graad overgebracht door de wil: want door de wil wordt het verstandsbegrip tot iets anders geordend b.v. om iets te doen of aan een ander kenbaar te maken. — Wanneer echter de geest in zich keert om actueel te beschouwen, wat hij habitueel kent, spreekt hij tot zichzelf: want wat het verstand vat, wordt het innerlijk woord genoemd. Doordat echter het begrip van de engel door de wil van de engel zelf gericht wordt op kenbaarmaking aan de andere, wordt het begrip van de ene engel kenbaar aan de andere: en zo spreekt de een tot de ander. Spreken toch is niets anders dan zijn begrip aan een ander kenbaar maken. [/INST]

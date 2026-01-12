@@ -1,0 +1,20 @@
+# Qwen/Qwen2.5-32B-Instruct-AWQ
+[INST] Je bent een tekstredacteur.
+
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
+
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers (bv. 'mededeeling' wordt 'mededeling', uitgang '-sch' wordt '-s'), naamvalsvormen van lidwoorden (bv. 'den' wordt 'de') en van bijvoeglijke naamwoorden.
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:
+
+Het spreken van den engel geschiedt, zooals gezegd is (1° en 2° Art.), hierdoor, dat hij zijn gedachten richt op een ander. Maar iets wordt op twee manieren op een ander gericht; vooreerst, om aan den ander mede te deelen, zooals in de natuurlijke dingen de werkoorzaak gericht wordt op het voorwerp van de werking, en bij de menschelijke gesprekken, de leeraar gericht wordt op den leerling. En wat dit aangaat, spreekt de engel op geen enkele manier tot God, noch met betrekking tot de waarheid, noch met betrekking tot hetgeen van een geschapen wil afhankelijk is; want God is beginsel en schepper van iedere waarheid en iederen wil. — Vervolgens wordt iets op een ander gericht om iets van hem te ontvangen, zooals in de natuurlijke dingen het voorwerp der werking op de werkoorzaak, en bij menschelijke gesprekken, de leerling op den leeraar. En op deze manier spreekt de engel tot God, hetzij door den goddelijken Wil te raadplegen over hetgeen hem te doen staat; hetzij Gods Uitnemendheid, die hij nooit doorgrondt, bewonderend, zooals Gregorius zegt, dat « de engelen tot God spreken, wanneer zij door hetgeen zij over zichzelf zien, in bewondering opgaan ». [/INST] Het spreken van de engel geschiedt, zoals gezegd is (1° en 2° Art.), hierdoor, dat hij zijn gedachten richt op een ander. Maar iets wordt op twee manieren op een ander gericht; eerst, om aan de ander mede te delen, zoals in de natuurlijke dingen de werkoorzaak gericht wordt op het voorwerp van de werking, en bij de menselijke gesprekken, de leeraar gericht wordt op de leerling. En wat dit aangaat, spreekt de engel op geen enkele manier tot God, noch met betrekking tot de waarheid, noch met betrekking tot hetgeen van een geschapen wil afhankelijk is; want God is beginsel en schepper van iedere waarheid en iederen wil. — Vervolgens wordt iets op een ander gericht om iets van hem te ontvangen, zoals in de natuurlijke dingen het voorwerp der werking op de werkoorzaak, en bij menselijke gesprekken, de leerling op de leeraar. En op deze manier spreekt de engel tot God, hetzij door de goddelijke Wil te raadplegen over hetgeen hem te doen staat; hetzij Gods Uitnemendheid, die hij nooit doorgrondt, bewonderend, zoals Gregorius zegt, dat « de engelen tot God spreken, wanneer zij door hetgeen zij over zichzelf zien, in bewondering opgaan ». [/INST]

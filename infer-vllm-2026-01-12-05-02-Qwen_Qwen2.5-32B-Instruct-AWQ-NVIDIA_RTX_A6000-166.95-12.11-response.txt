@@ -1,0 +1,20 @@
+# Qwen/Qwen2.5-32B-Instruct-AWQ
+[INST] Je bent een tekstredacteur.
+
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
+
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling. Antwoord uitsluitend met de gecorrigeerde tekst en stop daarna.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers (bv. 'mededeeling' wordt 'mededeling', uitgang '-sch' wordt '-s'), naamvalsvormen van lidwoorden (bv. 'den' wordt 'de') en van bijvoeglijke naamwoorden (bv. 'van iederen engel' wordt 'van iedere engel').
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:
+
+Hiërarchie is, zooals gezegd is (in de 1° Bedenking), heilig bestuur. In de naam bestuur worden echter twee dingen begrepen: nl. de bestuurder zelf, en de menigte onder den bestuurder geordend. Daar dus God alleen de Bestuurder is, niet slechts van alle engelen, maar ook van de menschen en geheel de schepping, is er slechts een hiërarchie, niet slechts van alle engelen, maar van alle redelijke schepselen, die het heilige deelachtig kunnen zijn; naar het woord van Augustinus, dat er « twee steden zijn, dat is maatschappijen, een van goede engelen en menschen, de ander van de kwade ». — Maar als het bestuur gezien wordt van den kant van de menigte, die onder den bestuurder geordend is, dan wordt één bestuur genoemd al naar gelang de menigte op één en dezelfde wijze aan het bestuur van den bestuurder deelachtig is. Degenen, die niet op dezelfde wijze door den bestuurder kunnen bestuurd worden, behooren tot verschillende besturen: zooals onder één koning meerdere steden zijn, die door verschillende wetten en (ondergeschikte) bestuurders bestuurd worden. Het is echter klaar, dat de menschen op andere wijze de goddelijke verlichtingen ontvangen dan de engelen: want de engelen ontvangen ze in louter begrijpelijkheid, de menschen echter onder zinnelijk waarneembare beelden, zooals Dionysius zegt. En daarom moet er onderscheid gemaakt worden tusschen de hiërarchie der menschen en der engelen. [/INST] Hiërarchie is, zoals gezegd is (in de 1° Bedenking), heilig bestuur. In de naam bestuur worden echter twee dingen begrepen: nl. de bestuurder zelf, en de menigte onder de bestuurder geordend. Daar dus God alleen de Bestuurder is, niet slechts van alle engelen, maar ook van de mensen en geheel de schepping, is er slechts een hiërarchie, niet slechts van alle engelen, maar van alle redelijke schepselen, die het heilige deelachtig kunnen zijn; naar het woord van Augustinus, dat er « twee steden zijn, dat is maatschappijen, een van goede engelen en mensen, de ander van de kwade ». — Maar als het bestuur gezien wordt van de kant van de menigte, die onder de bestuurder geordend is, dan wordt één bestuur genoemd al naar gelang de menigte op één en dezelfde wijze aan het bestuur van de bestuurder deelachtig is. Degenen, die niet op dezelfde wijze door de bestuurder kunnen bestuurd worden, behooren tot verschillende besturen: zoals onder één koning meerdere steden zijn, die door verschillende wetten en (ondergeschikte) bestuurders bestuurd worden. Het is echter duidelijk, dat de mensen op andere wijze de goddelijke verlichtingen ontvangen dan de engelen: want de engelen ontvangen ze in louter begrijpelijkheid, de mensen echter onder zinnelijk waarneembare beelden, zoals Dionysius zegt. En daarom moet er onderscheid gemaakt worden tussen de hiërarchie der mensen en der engelen. [/INST]

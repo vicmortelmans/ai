@@ -1,0 +1,20 @@
+# Qwen/Qwen2.5-32B-Instruct-AWQ
+[INST] Je bent een tekstredacteur.
+
+Je taak is om uitsluitend de spelling te moderniseren.
+Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
+
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling.
+
+Regels:
+- Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers, uitgang '-sch', naamvalsvormen van lidwoorden (bv. 'den') en bijvoeglijke naamwoorden.
+- Verander geen betekenissen en voeg niets toe.
+- Laat Latijnse tekst volledig onveranderd.
+- Woorden die al in moderne spelling staan, blijven exact gelijk.
+- Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:
+
+De lagere engelen kunnen tot de hogere spreken. Tot klaarheid hiervan bedenke men, dat bij de engelen iedere verlichting spreken is, maar niet alle spreken is verlichten. Zooals immers gezegd is (in het vorig Art.), is het spreken van den eenen engel tot den anderen niets anders, dan door eigen wil zijn gedachte zoo ordenen, dat ze aan den ander bekend wordt. Wat we echter met het verstand vatten, kan tot een tweevoudig beginsel worden teruggebracht: tot God Zelf, die de eerste waarheid is; en tot den wil van den kenner, waardoor we daadwerkelijk iets begrijpen. Daar nu de waarheid het licht des verstands is, en de regel van iedere waarheid God Zelf, is de kenbaarmaking van hetgeen we begrijpen, voor zoover het van de eerste waarheid afhangt, én spreken én verlichten: b.v. wanneer de eene mensch tot den anderen zegt: « de hemel is door God geschapen », of: « de mensch is een dier ». De mededeeling echter van hetgeen van den wil van den kenner afhangt, kan men geen verlichting noemen, maar alleen spraak; b.v. als iemand een ander zegt: « Ik wil dit leeren », of: « ik wil dit of dat doen ». De reden hiervan is, dat de geschapen wil geen licht is, noch regel der waarheid, maar slechts deelachtig is aan het licht: daarom is de mededeeling van wat van den geschapen wil als zoodanig afhangt, geen verlichten. Het behoort immers niet tot de vervolmaking van mijn verstand te weten, wat gij wilt, of wat gij kent, maar uitsluitend wat de waarheid is. [/INST] De lagere engelen kunnen tot de hogere spreken. Tot klaarheid hiervan bedenke men, dat bij de engelen iedere verlichting spreken is, maar niet alle spreken is verlichten. Zoals immers gezegd is (in het vorige artikel), is het spreken van een engel tot een ander niets anders, dan door eigen wil zijn gedachte zo ordenen, dat ze aan een ander bekend wordt. Wat we echter met het verstand vatten, kan tot een tweevoudig beginsel worden teruggebracht: tot God Zelf, die de eerste waarheid is; en tot de wil van de kenner, waardoor we daadwerkelijk iets begrijpen. Daar nu de waarheid het licht van het verstand is, en de regel van iedere waarheid God Zelf, is de kenbaarstelling van hetgeen we begrijpen, voor zover het van de eerste waarheid afhangt, én spreken én verlichten: b.v. wanneer een mens tot een ander zegt: « de hemel is door God geschapen », of: « de mens is een dier ». De mededeeling echter van hetgeen van de wil van de kenner afhangt, kan men geen verlichting noemen, maar alleen spraak; b.v. als iemand een ander zegt: « Ik wil dit leren », of: « ik wil dit of dat doen ». De reden hiervan is, dat de geschapen wil geen licht is, noch regel der waarheid, maar slechts deelachtig is aan het licht: daarom is de mededeeling van wat van de geschapen wil als zodanig afhangt, geen verlichten. Het behoort immers niet tot de vervolmaking van mijn verstand te weten, wat jij wilt, of wat jij kent, maar uitsluitend wat de waarheid is. [/INST]
