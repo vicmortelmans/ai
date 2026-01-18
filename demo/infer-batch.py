@@ -59,7 +59,11 @@ def main():
     # 1. Initialize the Model
     start_init = time.time()
     
-    llm = LLM(model=model, download_dir="/hfcache/hub/")
+    # ------
+    # PERFORMANCE IMPROVEMENT: PREFIX CACHING
+    #llm = LLM(model=model, download_dir="/hfcache/hub/")
+    llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
+    # ------
     end_init = time.time()
     init_seconds = end_init - start_init
     
