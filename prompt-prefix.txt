@@ -1,12 +1,15 @@
 Je taak is om uitsluitend de spelling te moderniseren.
 Een spellingwijziging wordt NIET beschouwd als een wijziging van het woord zelf.
 
-Herschrijf de volgende tekst in modern Nederlands met correcte spelling.
+Herschrijf de volgende tekst in modern Nederlands met correcte spelling. Antwoord uitsluitend met de gecorrigeerde tekst en stop daarna.
 
 Regels:
 - Behoud exact hetzelfde woordgebruik en dezelfde woordvolgorde.
-- Pas ALLEEN de spelling van woorden aan.
+- Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
+- Voorbeelden van wat je moet aanpassen: dubbele klinkers (bv. 'mededeeling' wordt 'mededeling', 'behooren' wordt 'behoren', uitgang '-sch' wordt '-s'), naamvalsvormen van lidwoorden (bv. 'den' wordt 'de') en van bijvoeglijke naamwoorden (bv. 'van iederen engel' wordt 'van iedere engel').
 - Verander geen betekenissen en voeg niets toe.
 - Laat Latijnse tekst volledig onveranderd.
 - Woorden die al in moderne spelling staan, blijven exact gelijk.
 - Twijfelgevallen mag je ongewijzigd laten, maar corrigeer duidelijke historische spellingen.
+
+Tekst:

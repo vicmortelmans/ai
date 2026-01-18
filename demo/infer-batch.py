@@ -63,10 +63,13 @@ def main():
     end_init = time.time()
     init_seconds = end_init - start_init
     
+    total_bytes = sum(os.path.getsize(os.path.join(input_dir, f)) for f in txt_files)
+    warmup_duration = 0  # Initialize warmup duration
     # Warm-up inference
-    warmup_prompt = "Warm-up request"
-    warmup_sampling_params = SamplingParams(temperature=0, max_tokens=1)
+    warmup_start = time.time()
     llm.generate([warmup_prompt], warmup_sampling_params)
+    warmup_end = time.time()
+    warmup_duration = warmup_end - warmup_start
     
     # For each input file
     for txt_file in txt_files:
@@ -98,17 +101,17 @@ def main():
         print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
         
         # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
-        full_text = prompt_text + output.outputs[0].text
+        full_text = output.outputs[0].text
         
         # 4. Write to file
-        base_name = os.path.basename(txt_file).rsplit('.', 1)[0]
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
-        output_filename = f"{base_name}-{timestamp}-{sanitize_filename(model)}-{sanitize_filename(gpu_model)}-{init_seconds:.2f}-{infer_seconds:.2f}-response.txt"
-        output_path = os.path.join(output_dir, output_filename)
-        
+        output_path = os.path.join(output_dir, txt_file)  # Use input filename for output
         with open(output_path, "w", encoding="utf-8") as f:
-            f.write(f"# {model}\n")
             f.write(full_text)
+
+        # Log metadata
+        log_file_path = os.path.join(output_dir, "inference_log.txt")
+        with open(log_file_path, "a", encoding="utf-8") as log_file:
+            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{len(txt_files)},{total_bytes}\n")
             
         print(f"Success! Output written to {output_path}")
 
