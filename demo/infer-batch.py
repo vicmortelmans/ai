@@ -63,9 +63,10 @@ def main():
     end_init = time.time()
     init_seconds = end_init - start_init
     
-    total_bytes = sum(os.path.getsize(os.path.join(input_dir, f)) for f in txt_files)
     warmup_duration = 0  # Initialize warmup duration
     # Warm-up inference
+    warmup_prompt = "Warm-up request"
+    warmup_sampling_params = SamplingParams(temperature=0, max_tokens=1)
     warmup_start = time.time()
     llm.generate([warmup_prompt], warmup_sampling_params)
     warmup_end = time.time()
@@ -111,7 +112,7 @@ def main():
         # Log metadata
         log_file_path = os.path.join(output_dir, "inference_log.txt")
         with open(log_file_path, "a", encoding="utf-8") as log_file:
-            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{len(txt_files)},{total_bytes}\n")
+            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{prompt_tokens},{completion_tokens}\n")
             
         print(f"Success! Output written to {output_path}")
 
