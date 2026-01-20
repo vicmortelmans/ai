@@ -30,7 +30,8 @@ def main():
     # Configuration
     #model = "mistralai/Mistral-7B-Instruct-v0.3"
     #model = "ReBatch/Llama-3-8B-dutch"
-    model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
+    #model = "Qwen/Qwen2.5-32B-Instruct-AWQ" # 19GB disk, 45GB VRAM
+    model = "unsloth/gemma-3-27b-it-bnb-4bit" # 16GB disk, 45GB VRAN
     input_dir = "/hfcache/input"
     output_dir = "/hfcache/output"
     os.makedirs(output_dir, exist_ok=True)

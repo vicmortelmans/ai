@@ -1,0 +1,1 @@
+VLLM_LOGGING_LEVEL=DEBUG python3 infer-batch.py 2>&1 | tee /hfcache/output/script_output.txt
