@@ -78,48 +78,48 @@ def main():
     warmup_duration = warmup_end - warmup_start
     
     # For each input file
-    for txt_file in txt_files:
-        full_path = os.path.join(input_dir, txt_file)
-        with open(full_path, "r", encoding="utf-8") as f:
-            user_prompt = f.read().strip()
-        user_prompt = prefix + "\n\n" + user_prompt
-        
-        # 2. Format Prompt (ChatML style)
-        system_message = "Je bent een tekstredacteur."
-        messages = [
-            {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
-        ]
-        prompt_text = format_prompt(messages)
-        
-        # 3. Run Inference
-        print(f"Running inference for {txt_file}...")
-        sampling_params = SamplingParams(temperature=0, max_tokens=2048)
-        start_infer = time.time()
-        outputs = llm.generate([prompt_text], sampling_params)
-        end_infer = time.time()
-        infer_seconds = end_infer - start_infer
-        
-        # Print usage statistics
-        output = outputs[0]
-        prompt_tokens = len(output.prompt_token_ids)
-        completion_tokens = len(output.outputs[0].token_ids)
-        total_tokens = prompt_tokens + completion_tokens
-        print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
-        
-        # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
-        full_text = output.outputs[0].text
-        
-        # 4. Write to file
-        output_path = os.path.join(output_dir, txt_file)  # Use input filename for output
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(full_text)
-
-        # Log metadata
-        log_file_path = os.path.join(output_dir, "inference_log.txt")
-        with open(log_file_path, "a", encoding="utf-8") as log_file:
-            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{prompt_tokens},{completion_tokens}\n")
+    log_file_path = os.path.join(output_dir, "inference_log.txt")
+    with open(log_file_path, "w", encoding="utf-8") as log_file:
+        for txt_file in txt_files:
+            full_path = os.path.join(input_dir, txt_file)
+            with open(full_path, "r", encoding="utf-8") as f:
+                user_prompt = f.read().strip()
+            user_prompt = prefix + "\n\n" + user_prompt
             
-        print(f"Success! Output written to {output_path}")
+            # 2. Format Prompt (ChatML style)
+            system_message = "Je bent een tekstredacteur."
+            messages = [
+                {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
+            ]
+            prompt_text = format_prompt(messages)
+            
+            # 3. Run Inference
+            print(f"Running inference for {txt_file}...")
+            sampling_params = SamplingParams(temperature=0, max_tokens=2048)
+            start_infer = time.time()
+            outputs = llm.generate([prompt_text], sampling_params)
+            end_infer = time.time()
+            infer_seconds = end_infer - start_infer
+            
+            # Print usage statistics
+            output = outputs[0]
+            prompt_tokens = len(output.prompt_token_ids)
+            completion_tokens = len(output.outputs[0].token_ids)
+            total_tokens = prompt_tokens + completion_tokens
+            print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
+            
+            # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
+            full_text = output.outputs[0].text
+            
+            # 4. Write to file
+            output_path = os.path.join(output_dir, txt_file)  # Use input filename for output
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(full_text)
+
+            # Log metadata
+            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{prompt_tokens},{completion_tokens}\n")
+                
+            print(f"Success! Output written to {output_path}")
 
 if __name__ == "__main__":
     main()
