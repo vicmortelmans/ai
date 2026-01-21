@@ -9,21 +9,33 @@ def sanitize_filename(s: str, replacement: str = "_") -> str:
     # Keep letters, numbers, dash, underscore, dot
     return re.sub(r'[^A-Za-z0-9._-]', replacement, s)
 
-def format_prompt(messages):
-    eos_token = "</s>"
-    formatted_text = ""
-    for i, message in enumerate(messages):
-        if message["role"] == "user":
-            if i % 2 != 0:
-                raise Exception("Conversation roles must alternate user/assistant/user/assistant/...")
-            formatted_text += "[INST] " + message["content"] + " [/INST]"
-        elif message["role"] == "assistant":
-            if i % 2 == 0:
-                raise Exception("Conversation roles must alternate user/assistant/user/assistant/...")
-            formatted_text += message["content"] + eos_token
-        else:
-            raise Exception("Only user and assistant roles are supported!")
-    return formatted_text
+def format_prompt(system_message, instruction, input_text, model_name):
+    templates = {
+        "Qwen/Qwen2.5-32B-Instruct-AWQ": """<|im_start|>system
+{system}
+<|im_end|>
+<|im_start|>user
+{instruction}
+
+{input}
+<|im_end|>
+<|im_start|>assistant
+""",
+        "unsloth/gemma-3-27b-it-bnb-4bit": """<start_of_turn>user
+{system}
+{instruction}
+
+{input}
+<end_of_turn>
+<start_of_turn>model
+""",
+    }
+    if model_name in templates:
+        template = templates[model_name]
+        return template.format(system=system_message, instruction=instruction, input=input_text)
+    else:
+        # Default to old Mistral style
+        return f"[INST] {system_message}\n\n{instruction}\n\n{input_text} [/INST]"
 
 
 def main():
@@ -83,15 +95,17 @@ def main():
         for txt_file in txt_files:
             full_path = os.path.join(input_dir, txt_file)
             with open(full_path, "r", encoding="utf-8") as f:
-                user_prompt = f.read().strip()
-            user_prompt = prefix + "\n\n" + user_prompt
+                user_input = f.read().strip()
             
-            # 2. Format Prompt (ChatML style)
+            # 2. Format Prompt
             system_message = "Je bent een tekstredacteur."
-            messages = [
-                {"role": "user", "content": f"{system_message}\n\n{user_prompt}"}
-            ]
-            prompt_text = format_prompt(messages)
+            prompt_text = format_prompt(system_message, prefix, user_input, model)
+            
+            # Write prompt to file
+            prompt_basename = os.path.splitext(txt_file)[0] + "_prompt.txt"
+            prompt_path = os.path.join(output_dir, prompt_basename)
+            with open(prompt_path, "w", encoding="utf-8") as f:
+                f.write(prompt_text)
             
             # 3. Run Inference
             print(f"Running inference for {txt_file}...")
