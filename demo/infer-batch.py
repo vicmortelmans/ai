@@ -74,8 +74,8 @@ def main():
     
     # ------
     # PERFORMANCE IMPROVEMENT: PREFIX CACHING
-    #llm = LLM(model=model, download_dir="/hfcache/hub/")
-    llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
+    llm = LLM(model=model, download_dir="/hfcache/hub/")
+    #llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
     # ------
     end_init = time.time()
     init_seconds = end_init - start_init
@@ -90,37 +90,55 @@ def main():
     warmup_duration = warmup_end - warmup_start
     
     # For each input file
+    all_prompts = []
+    all_txt_files = []
+    for txt_file in txt_files:
+        full_path = os.path.join(input_dir, txt_file)
+        with open(full_path, "r", encoding="utf-8") as f:
+            user_input = f.read().strip()
+        
+        # 2. Format Prompt
+        system_message = "Je bent een tekstredacteur."
+        prompt_text = format_prompt(system_message, prefix, user_input, model)
+        
+        # Write prompt to file
+        prompt_basename = os.path.splitext(txt_file)[0] + "_prompt.txt"
+        prompt_path = os.path.join(output_dir, prompt_basename)
+        with open(prompt_path, "w", encoding="utf-8") as f:
+            f.write(prompt_text)
+        
+        all_prompts.append(prompt_text)
+        all_txt_files.append(txt_file)
+    
+    # 3. Run Inference
+    print("Running inference...")
+    sampling_params = SamplingParams(temperature=0, max_tokens=2048)
+    start_infer = time.time()
+    # ------
+    # PERFORMANCE IMPROVEMENT: PREFIX CACHING
+    outputs = llm.generate(all_prompts, sampling_params)
+    #outputs = []
+    #for prompt in all_prompts:
+    #    output = llm.generate([prompt], sampling_params)
+    #    outputs.append(output[0])
+    # ------
+    end_infer = time.time()
+    total_infer_seconds = end_infer - start_infer
+    print(f"Inference completed in {total_infer_seconds:.2f} seconds")
+    
     log_file_path = os.path.join(output_dir, "inference_log.txt")
     with open(log_file_path, "w", encoding="utf-8") as log_file:
-        for txt_file in txt_files:
-            full_path = os.path.join(input_dir, txt_file)
-            with open(full_path, "r", encoding="utf-8") as f:
-                user_input = f.read().strip()
-            
-            # 2. Format Prompt
-            system_message = "Je bent een tekstredacteur."
-            prompt_text = format_prompt(system_message, prefix, user_input, model)
-            
-            # Write prompt to file
-            prompt_basename = os.path.splitext(txt_file)[0] + "_prompt.txt"
-            prompt_path = os.path.join(output_dir, prompt_basename)
-            with open(prompt_path, "w", encoding="utf-8") as f:
-                f.write(prompt_text)
-            
-            # 3. Run Inference
-            print(f"Running inference for {txt_file}...")
-            sampling_params = SamplingParams(temperature=0, max_tokens=2048)
-            start_infer = time.time()
-            outputs = llm.generate([prompt_text], sampling_params)
-            end_infer = time.time()
-            infer_seconds = end_infer - start_infer
-            
+        total_prompt_tokens = 0
+        total_completion_tokens = 0
+        for txt_file, output in zip(all_txt_files, outputs):
             # Print usage statistics
-            output = outputs[0]
             prompt_tokens = len(output.prompt_token_ids)
             completion_tokens = len(output.outputs[0].token_ids)
             total_tokens = prompt_tokens + completion_tokens
-            print(f"Token Usage: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
+            print(f"Token Usage for {txt_file}: Prompt: {prompt_tokens}, Completion: {completion_tokens}, Total: {total_tokens}")
+            
+            total_prompt_tokens += prompt_tokens
+            total_completion_tokens += completion_tokens
             
             # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
             full_text = output.outputs[0].text
@@ -129,11 +147,10 @@ def main():
             output_path = os.path.join(output_dir, txt_file)  # Use input filename for output
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(full_text)
-
-            # Log metadata
-            log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{infer_seconds:.2f},{prompt_tokens},{completion_tokens}\n")
                 
             print(f"Success! Output written to {output_path}")
+        # Log summary
+        log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{total_infer_seconds:.2f},{total_prompt_tokens},{total_completion_tokens}\n")
 
 if __name__ == "__main__":
     main()
