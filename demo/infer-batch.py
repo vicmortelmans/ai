@@ -7,6 +7,7 @@ import re
 
 PREFIX_CACHING = False
 CONTINUOUS_BATCHING = True
+SPECULATIVE_DECODING = False
 
 def sanitize_filename(s: str, replacement: str = "_") -> str:
     # Keep letters, numbers, dash, underscore, dot
@@ -78,10 +79,21 @@ def main():
     # ------
     # PERFORMANCE IMPROVEMENT: PREFIX CACHING
     if PREFIX_CACHING:
-        llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
+        enable_prefix_caching = True
     else:
-        llm = LLM(model=model, download_dir="/hfcache/hub/")
+        enable_prefix_caching = False
     # ------
+    # PERFORMANCE IMPROVEMENT: SPECULATIVE DECODING
+    if SPECULATIVE_DECODING:
+        speculative_config = {
+            "method": "ngram",
+            "num_speculative_tokens": 5,
+            "prompt_lookup_max": 4,
+        }
+    else:
+        speculative_config = None
+    # ------
+    llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=enable_prefix_caching, speculative_config=speculative_config)
     end_init = time.time()
     init_seconds = end_init - start_init
     
