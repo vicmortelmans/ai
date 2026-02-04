@@ -5,6 +5,9 @@ import torch
 from vllm import LLM, SamplingParams
 import re
 
+PREFIX_CACHING = False
+CONTINUOUS_BATCHING = True
+
 def sanitize_filename(s: str, replacement: str = "_") -> str:
     # Keep letters, numbers, dash, underscore, dot
     return re.sub(r'[^A-Za-z0-9._-]', replacement, s)
@@ -74,8 +77,10 @@ def main():
     
     # ------
     # PERFORMANCE IMPROVEMENT: PREFIX CACHING
-    llm = LLM(model=model, download_dir="/hfcache/hub/")
-    #llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
+    if PREFIX_CACHING:
+        llm = LLM(model=model, download_dir="/hfcache/hub/", enable_prefix_caching=True)
+    else:
+        llm = LLM(model=model, download_dir="/hfcache/hub/")
     # ------
     end_init = time.time()
     init_seconds = end_init - start_init
@@ -115,12 +120,14 @@ def main():
     sampling_params = SamplingParams(temperature=0, max_tokens=2048)
     start_infer = time.time()
     # ------
-    # PERFORMANCE IMPROVEMENT: PREFIX CACHING
-    outputs = llm.generate(all_prompts, sampling_params)
-    #outputs = []
-    #for prompt in all_prompts:
-    #    output = llm.generate([prompt], sampling_params)
-    #    outputs.append(output[0])
+    # PERFORMANCE IMPROVEMENT: CONTINUOUS BATCHING
+    if CONTINUOUS_BATCHING:
+        outputs = llm.generate(all_prompts, sampling_params)
+    else:
+        outputs = []
+        for prompt in all_prompts:
+            output = llm.generate([prompt], sampling_params)
+            outputs.append(output[0])
     # ------
     end_infer = time.time()
     total_infer_seconds = end_infer - start_infer
