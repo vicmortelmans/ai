@@ -157,7 +157,7 @@ def main():
                 
             print(f"Success! Output written to {output_path}")
         # Log summary
-        log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{total_infer_seconds:.2f},{total_prompt_tokens},{total_completion_tokens}\n")
+        log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{total_infer_seconds:.2f},{total_prompt_tokens},{total_completion_tokens},PREFIX_CACHING={PREFIX_CACHING};CONTINUOUS_BATCHING={CONTINUOUS_BATCHING}\n")
 
 if __name__ == "__main__":
     main()
