@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import os
 import time
@@ -51,6 +52,30 @@ def main():
     input_dir = "/hfcache/input"
     output_dir = "/hfcache/output"
     os.makedirs(output_dir, exist_ok=True)
+    # Command-line arguments to override hardcoded switches
+    parser = argparse.ArgumentParser(description="Batch inference runner")
+    parser.add_argument("--prefix-caching", dest="prefix_caching", action="store_true", help="Enable prefix caching")
+    parser.add_argument("--no-prefix-caching", dest="prefix_caching", action="store_false", help="Disable prefix caching")
+    parser.set_defaults(prefix_caching=PREFIX_CACHING)
+
+    parser.add_argument("--continuous-batching", dest="continuous_batching", action="store_true", help="Enable continuous batching")
+    parser.add_argument("--no-continuous-batching", dest="continuous_batching", action="store_false", help="Disable continuous batching")
+    parser.set_defaults(continuous_batching=CONTINUOUS_BATCHING)
+
+    parser.add_argument("--speculative-decoding", dest="speculative_decoding", action="store_true", help="Enable speculative decoding")
+    parser.add_argument("--no-speculative-decoding", dest="speculative_decoding", action="store_false", help="Disable speculative decoding")
+    # Alias for users who may refer to speculative encoding
+    parser.add_argument("--speculative-encoding", dest="speculative_decoding", action="store_true", help=argparse.SUPPRESS)
+    parser.set_defaults(speculative_decoding=SPECULATIVE_DECODING)
+
+    parser.add_argument("--output-prefix", dest="output_prefix", type=str, default=None, help="Write outputs to a subdirectory under the output directory")
+
+    args = parser.parse_args()
+
+    # If an output prefix is provided, use it
+    output_prefix = ""
+    if args.output_prefix:
+        output_prefix = sanitize_filename(args.output_prefix) + "_"
     
     # Get GPU model
     gpu_model = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
@@ -76,15 +101,12 @@ def main():
     # 1. Initialize the Model
     start_init = time.time()
     
-    # ------
-    # PERFORMANCE IMPROVEMENT: PREFIX CACHING
-    if PREFIX_CACHING:
-        enable_prefix_caching = True
-    else:
-        enable_prefix_caching = False
-    # ------
-    # PERFORMANCE IMPROVEMENT: SPECULATIVE DECODING
-    if SPECULATIVE_DECODING:
+    # ----
+    # PERFORMANCE IMPROVEMENT: PREFIX CACHING (overridable via CLI)
+    enable_prefix_caching = bool(args.prefix_caching)
+    # ----
+    # PERFORMANCE IMPROVEMENT: SPECULATIVE DECODING (overridable via CLI)
+    if args.speculative_decoding:
         speculative_config = {
             "method": "ngram",
             "num_speculative_tokens": 5,
@@ -118,8 +140,8 @@ def main():
         system_message = "Je bent een tekstredacteur."
         prompt_text = format_prompt(system_message, prefix, user_input, model)
         
-        # Write prompt to file
-        prompt_basename = os.path.splitext(txt_file)[0] + "_prompt.txt"
+        # Write prompt to file (prefix filename if requested)
+        prompt_basename = output_prefix + os.path.splitext(txt_file)[0] + "_prompt.txt"
         prompt_path = os.path.join(output_dir, prompt_basename)
         with open(prompt_path, "w", encoding="utf-8") as f:
             f.write(prompt_text)
@@ -131,9 +153,9 @@ def main():
     print("Running inference...")
     sampling_params = SamplingParams(temperature=0, max_tokens=2048)
     start_infer = time.time()
-    # ------
-    # PERFORMANCE IMPROVEMENT: CONTINUOUS BATCHING
-    if CONTINUOUS_BATCHING:
+    # ----
+    # PERFORMANCE IMPROVEMENT: CONTINUOUS BATCHING (overridable via CLI)
+    if args.continuous_batching:
         outputs = llm.generate(all_prompts, sampling_params)
     else:
         outputs = []
@@ -145,7 +167,7 @@ def main():
     total_infer_seconds = end_infer - start_infer
     print(f"Inference completed in {total_infer_seconds:.2f} seconds")
     
-    log_file_path = os.path.join(output_dir, "inference_log.txt")
+    log_file_path = os.path.join(output_dir, f"{output_prefix}_inference_log.txt")
     with open(log_file_path, "w", encoding="utf-8") as log_file:
         total_prompt_tokens = 0
         total_completion_tokens = 0
@@ -162,14 +184,14 @@ def main():
             # vLLM returns only the generated text, so we prepend the prompt to match echo=True behavior
             full_text = output.outputs[0].text
             
-            # 4. Write to file
-            output_path = os.path.join(output_dir, txt_file)  # Use input filename for output
+            # 4. Write to file (prefix filename if requested)
+            output_path = os.path.join(output_dir, output_prefix + txt_file)  # Use input filename for output
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(full_text)
                 
             print(f"Success! Output written to {output_path}")
         # Log summary
-        log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{total_infer_seconds:.2f},{total_prompt_tokens},{total_completion_tokens},PREFIX_CACHING={PREFIX_CACHING};CONTINUOUS_BATCHING={CONTINUOUS_BATCHING};SPECULATIVE_DECODING={SPECULATIVE_DECODING}\n")
+        log_file.write(f"{datetime.datetime.now()},{model},{gpu_model},{init_seconds:.2f},{warmup_duration:.2f},{total_infer_seconds:.2f},{total_prompt_tokens},{total_completion_tokens},PREFIX_CACHING={args.prefix_caching};CONTINUOUS_BATCHING={args.continuous_batching};SPECULATIVE_DECODING={args.speculative_decoding}\n")
 
 if __name__ == "__main__":
     main()
