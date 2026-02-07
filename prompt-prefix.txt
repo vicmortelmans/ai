@@ -8,7 +8,7 @@ Regels:
 - Pas ALLEEN de spelling van woorden en oude naamvalsvormen aan.
 - Voorbeelden van wat je moet aanpassen: 
     - dubbele klinkers, bv. 'mededeeling' wordt 'mededeling', 'behooren' wordt 'behoren', 
-    - uitgang '-sch' wordt '-s', bv. 'mensch' wordt 'mens', 
+    - uitgang '-sch' wordt '-s', bv. 'mensch' wordt 'mens' en 'menschen' wordt 'mensen',
     - naamvalsvormen van lidwoorden, bv. 'den' wordt 'de',
     - naamvalsvormen van bijvoeglijke naamwoorden, bv. 'van iederen engel' wordt 'van iedere engel'.
 - Verander geen betekenissen en voeg niets toe.
