@@ -36,7 +36,8 @@ for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
     
     mkdir -p "$META_DIR"
     
-    python3 "${SCRIPT_DIR}/infer-batch.py" --prefix-caching --continuous-batching --speculative-decoding --input-prefix "$INPUT_DIR" --prompt-file "$PROMPT_FILE" --output-prefix "$OUTPUT_DIR" --meta-prefix "$META_DIR" --dry-run 2>&1 | tee "${META_DIR}/script_output.txt"
+    #python3 "${SCRIPT_DIR}/infer-batch.py" --prefix-caching --continuous-batching --speculative-decoding --input-prefix "$INPUT_DIR" --prompt-file "$PROMPT_FILE" --output-prefix "$OUTPUT_DIR" --meta-prefix "$META_DIR" --dry-run 2>&1 | tee "${META_DIR}/script_output.txt"
+    python3 "${SCRIPT_DIR}/infer-batch.py" --prefix-caching --continuous-batching --speculative-decoding --input-prefix "$INPUT_DIR" --prompt-file "$PROMPT_FILE" --output-prefix "$OUTPUT_DIR" --meta-prefix "$META_DIR" 2>&1 | tee "${META_DIR}/script_output.txt"
 
     # --- Start of new loop for wdiff and CSV logging ---
     # Iterate over all newly created txt files in $OUTPUT_DIR
