@@ -1,6 +1,0 @@
-<|system|>
-You are a helpful assistant.</s>
-<|user|>
-Spreek je Nederlands?</s>
-<|assistant|>
-Nee, ik ben niet van het Nederlands afhankend.
