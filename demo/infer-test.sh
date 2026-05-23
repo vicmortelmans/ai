@@ -21,7 +21,7 @@ TEST_NAME=$(basename "${TEST_DIR}")
 # Ensure the CSV header is written only once.
 # Header fields: TestName,OutputSubdir,PromptBasename,DiffCount
 if [ ! -f "$CSV_FILE" ]; then
-    echo "Timestamp,TestName,OutputSubdir,PromptBasename,DiffCount" > "$CSV_FILE"
+    echo "Timestamp,TestName,OutputSubdir,PromptBasename,FileName,DiffCount" > "$CSV_FILE"
 fi
 
 for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
@@ -68,7 +68,7 @@ for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
         # Append to CSV: TestName,OutputSubdir,PromptBasename,DiffCount
         # Assuming the generated output file name matches the prompt basename.
         TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-        CSV_LINE="${TIMESTAMP},${TEST_NAME},output,${PROMPT_BASENAME_NO_EXT},${DIFF_LINE_COUNT}"
+        CSV_LINE="${TIMESTAMP},${TEST_NAME},output,${PROMPT_BASENAME_NO_EXT},${GENERATED_BASENAME},${DIFF_LINE_COUNT}"
         echo "$CSV_LINE" >> "$CSV_FILE"
     done
     # --- End of new loop ---
