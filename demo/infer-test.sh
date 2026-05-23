@@ -33,8 +33,10 @@ for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
     
     OUTPUT_DIR="${TEST_DIR}/output/${PROMPT_BASENAME_NO_EXT}"
     META_DIR="${OUTPUT_DIR}/meta"
+    DIFFERENCES_DIR="${META_DIR}/differences"
     
     mkdir -p "$META_DIR"
+    mkdir -p "$DIFFERENCES_DIR"
     
     python3 "${SCRIPT_DIR}/infer-batch.py" --prefix-caching --continuous-batching --speculative-decoding --input-prefix "$INPUT_DIR" --prompt-file "$PROMPT_FILE" --output-prefix "$OUTPUT_DIR" --meta-prefix "$META_DIR" --dry-run 2>&1 | tee "${META_DIR}/script_output.txt"
 
@@ -47,7 +49,7 @@ for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
         GENERATED_BASENAME_NO_EXT="${GENERATED_BASENAME%.txt}" # e.g., base
 
         REFERENCE_FILE="${REFERENCE_DIR}/${GENERATED_BASENAME}"
-        DIFF_OUTPUT_FILE="${META_DIR}/${GENERATED_BASENAME_NO_EXT}-differences.txt"
+        DIFF_OUTPUT_FILE="${DIFFERENCES_DIR}/${GENERATED_BASENAME_NO_EXT}-differences.txt"
 
         if [ ! -f "$REFERENCE_FILE" ]; then
             echo "Warning: Reference file not found for comparison: $REFERENCE_FILE" | tee -a "${META_DIR}/script_output.txt"
@@ -71,3 +73,18 @@ for PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
     # --- End of new loop ---
 
 done
+
+# If a 'base' prompt exists, compare other prompts' differences to the base's differences
+BASE_DIFF_DIR="${TEST_DIR}/output/base/meta/differences"
+if [ -d "$BASE_DIFF_DIR" ]; then
+    for OTHER_PROMPT_FILE in "${PROMPTS_PATH}"/*.txt; do
+        [ -e "$OTHER_PROMPT_FILE" ] || continue
+        OTHER_BASENAME=$(basename "$OTHER_PROMPT_FILE" .txt)
+        if [ "$OTHER_BASENAME" != "base" ]; then
+            OTHER_META_DIR="${TEST_DIR}/output/${OTHER_BASENAME}/meta"
+            if [ -d "${OTHER_META_DIR}/differences" ]; then
+                diff -r "$BASE_DIFF_DIR" "${OTHER_META_DIR}/differences" > "${OTHER_META_DIR}/diff_against_base.txt"
+            fi
+        fi
+    done
+fi
